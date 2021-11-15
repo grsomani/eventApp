@@ -8,8 +8,8 @@
 import Foundation
 
 // MARK: - Welcome
-struct SearchEventResponse: Codable {
-    let events: [Event]?
+class SearchEventResponse: Codable {
+    var events: [Event]?
 }
 
 // MARK: - Event

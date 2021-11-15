@@ -7,10 +7,11 @@
 
 import Foundation
 
-public enum ConnectionError: Error {
+public enum NetworkError: Error {
     case invalidURL
     case noData
     case parsingFailure
+    case forwarded(Error)
 }
 
 public struct NetworkManager {
@@ -22,7 +23,7 @@ public struct NetworkManager {
                                                onSuccess: @escaping (T) -> Void,
                                                onError: @escaping (Error) -> Void) {
         guard let url = URL(string: request.path) else {
-            onError(ConnectionError.invalidURL)
+            onError(NetworkError.invalidURL)
             return
         }
 
@@ -45,7 +46,7 @@ public struct NetworkManager {
             }
 
             guard let apiData = data else {
-                onError(ConnectionError.noData)
+                onError(NetworkError.noData)
                 return
             }
             let decoder = JSONDecoder()
@@ -54,8 +55,15 @@ public struct NetworkManager {
                 onSuccess(parsedData)
             } catch {
                 debugPrint(error)
-                onError(ConnectionError.parsingFailure)
+                onError(NetworkError.parsingFailure)
             }
         }.resume()
+    }
+
+    public func cancelTask(with path: String) {
+        URLSession.shared.getAllTasks { tasks in
+            let oldTasks = tasks.filter { $0.originalRequest?.url?.absoluteString.hasPrefix(path) ?? false }
+            oldTasks.forEach { $0.cancel() }
+        }
     }
 }
