@@ -16,6 +16,8 @@
 		D79A57492740D4CB00EF4278 /* EventsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A57482740D4CB00EF4278 /* EventsAppTests.swift */; };
 		D79A57532740D4CB00EF4278 /* EventsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A57522740D4CB00EF4278 /* EventsAppUITests.swift */; };
 		D79A57552740D4CB00EF4278 /* EventsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A57542740D4CB00EF4278 /* EventsAppUITestsLaunchTests.swift */; };
+		D79A57632740D6EB00EF4278 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A57622740D6EB00EF4278 /* NetworkManager.swift */; };
+		D79A57652740D71600EF4278 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A57642740D71600EF4278 /* RequestData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		D79A574E2740D4CB00EF4278 /* EventsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D79A57522740D4CB00EF4278 /* EventsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAppUITests.swift; sourceTree = "<group>"; };
 		D79A57542740D4CB00EF4278 /* EventsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D79A57622740D6EB00EF4278 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D79A57642740D71600EF4278 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 		D79A57302740D4C900EF4278 /* EventsApp */ = {
 			isa = PBXGroup;
 			children = (
+				D79A57612740D6CD00EF4278 /* NetworkLayer */,
 				D79A57312740D4C900EF4278 /* AppDelegate.swift */,
 				D79A57332740D4C900EF4278 /* SceneDelegate.swift */,
 				D79A57352740D4C900EF4278 /* ViewController.swift */,
@@ -127,6 +132,15 @@
 			path = EventsAppUITests;
 			sourceTree = "<group>";
 		};
+		D79A57612740D6CD00EF4278 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				D79A57622740D6EB00EF4278 /* NetworkManager.swift */,
+				D79A57642740D71600EF4278 /* RequestData.swift */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,6 +151,7 @@
 				D79A572A2740D4C900EF4278 /* Sources */,
 				D79A572B2740D4C900EF4278 /* Frameworks */,
 				D79A572C2740D4C900EF4278 /* Resources */,
+				D79A57662742070700EF4278 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -253,11 +268,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D79A57662742070700EF4278 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D79A572A2740D4C900EF4278 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D79A57632740D6EB00EF4278 /* NetworkManager.swift in Sources */,
+				D79A57652740D71600EF4278 /* RequestData.swift in Sources */,
 				D79A57362740D4C900EF4278 /* ViewController.swift in Sources */,
 				D79A57322740D4C900EF4278 /* AppDelegate.swift in Sources */,
 				D79A57342740D4C900EF4278 /* SceneDelegate.swift in Sources */,
