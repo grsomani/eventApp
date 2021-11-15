@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum NetworkError: Error {
     case invalidURL
@@ -39,25 +40,27 @@ public struct NetworkManager {
             return
         }
 
-        URLSession.shared.dataTask(with: urlRequest) { (data, _, taskError) in
-            if let taskError = taskError {
-                onError(taskError)
-                return
-            }
+        self.getData(from: urlRequest) { (data, _, taskError) in
+            DispatchQueue.main.async {
+                if let taskError = taskError {
+                    onError(taskError)
+                    return
+                }
 
-            guard let apiData = data else {
-                onError(NetworkError.noData)
-                return
+                guard let apiData = data else {
+                    onError(NetworkError.noData)
+                    return
+                }
+                let decoder = JSONDecoder()
+                do {
+                    let parsedData = try decoder.decode(reponseType.self, from: apiData)
+                    onSuccess(parsedData)
+                } catch {
+                    debugPrint(error)
+                    onError(NetworkError.parsingFailure)
+                }
             }
-            let decoder = JSONDecoder()
-            do {
-                let parsedData = try decoder.decode(reponseType.self, from: apiData)
-                onSuccess(parsedData)
-            } catch {
-                debugPrint(error)
-                onError(NetworkError.parsingFailure)
-            }
-        }.resume()
+        }
     }
 
     public func cancelTask(with path: String) {
@@ -65,5 +68,24 @@ public struct NetworkManager {
             let oldTasks = tasks.filter { $0.originalRequest?.url?.absoluteString.hasPrefix(path) ?? false }
             oldTasks.forEach { $0.cancel() }
         }
+    }
+
+    public func downloadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
+        let urlRequest = URLRequest(url: url)
+        getData(from: urlRequest) { data, response, error in
+            guard let data = data, error == nil else { return }
+
+            DispatchQueue.main.async {
+                if response?.url?.absoluteString == url.absoluteString {
+                    completion(UIImage(data: data))
+                } else {
+                    completion(nil)
+                }
+            }
+        }
+    }
+
+    private func getData(from request: URLRequest, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        URLSession.shared.dataTask(with: request, completionHandler: completion).resume()
     }
 }

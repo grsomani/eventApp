@@ -45,11 +45,16 @@ class SearchResultsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count ?? 0
+        return searchResults.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell") as? EventSearchTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(searchResults[indexPath.row])
+        cell.selectionStyle = .none
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

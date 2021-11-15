@@ -21,6 +21,7 @@
 		D79A576A2742103100EF4278 /* SearchEventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A57692742103100EF4278 /* SearchEventResponse.swift */; };
 		D79A576E274278B500EF4278 /* SearchEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A576D274278B500EF4278 /* SearchEventService.swift */; };
 		D79A57712742CC3600EF4278 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A57702742CC3600EF4278 /* EventViewModel.swift */; };
+		D79A57732742DA6A00EF4278 /* EventSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D79A57722742DA6A00EF4278 /* EventSearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		D79A57692742103100EF4278 /* SearchEventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventResponse.swift; sourceTree = "<group>"; };
 		D79A576D274278B500EF4278 /* SearchEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEventService.swift; sourceTree = "<group>"; };
 		D79A57702742CC3600EF4278 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		D79A57722742DA6A00EF4278 /* EventSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				D79A57352740D4C900EF4278 /* SearchResultsTableViewController.swift */,
+				D79A57722742DA6A00EF4278 /* EventSearchTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D79A57632740D6EB00EF4278 /* NetworkManager.swift in Sources */,
+				D79A57732742DA6A00EF4278 /* EventSearchTableViewCell.swift in Sources */,
 				D79A576A2742103100EF4278 /* SearchEventResponse.swift in Sources */,
 				D79A57652740D71600EF4278 /* RequestData.swift in Sources */,
 				D79A57362740D4C900EF4278 /* SearchResultsTableViewController.swift in Sources */,

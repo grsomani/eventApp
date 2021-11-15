@@ -28,16 +28,10 @@ class SearchEventService {
         NetworkManager.instance.cancelTask(with: basePath)
         NetworkManager.instance.performOperation(request: searchRequest,
                                                  reponseType: SearchEventResponse.self) { response in
-            DispatchQueue.main.async {
-                debugPrint(response)
-                completion(response, nil)
-            }
+            debugPrint(response)
+            completion(response, nil)
         } onError: { error in
-            DispatchQueue.main.async {
-                debugPrint(error)
-                completion(nil, .forwarded(error))
-            }
+            completion(nil, .forwarded(error))
         }
-
     }
 }
