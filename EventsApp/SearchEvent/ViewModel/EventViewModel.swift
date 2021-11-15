@@ -37,7 +37,6 @@ struct EventViewModel {
               let date = dateFormatter.date(from: dateString) else {
                   return ""
               }
-        
         dateFormatter.dateFormat = "E, d MMM yyyy h:mm a"
         return dateFormatter.string(from: date)
     }

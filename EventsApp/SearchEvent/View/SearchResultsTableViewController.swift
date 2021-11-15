@@ -71,7 +71,8 @@ class SearchResultsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.searchController.searchBar.endEditing(true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let eventDetailVC = storyboard.instantiateViewController(withIdentifier: "EventDetailVC") as? EventDetailViewController else {
+        guard let eventDetailVC = storyboard
+                .instantiateViewController(withIdentifier: "EventDetailVC") as? EventDetailViewController else {
             return
         }
         eventDetailVC.eventViewModel = searchResults[indexPath.row]

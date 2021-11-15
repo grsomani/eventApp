@@ -12,7 +12,8 @@ class EventSearch: RequestData {
     var searchText: String = ""
 
     var path: String {
-        let completeUrl = "https://api.seatgeek.com/2/events?client_id=MjQ0NDM3MTh8MTYzNjg2ODkyMS45NzczMjA0&q=\(searchText)"
+        var completeUrl = "https://api.seatgeek.com/2/events?client_id=MjQ0NDM3MTh8MTYzNjg2ODkyMS45NzczMjA0&q="
+        completeUrl.append(searchText)
         let urlString = completeUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         return urlString ?? ""
     }
