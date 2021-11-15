@@ -14,8 +14,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-        // ToDO: Move this rule to yaml file as it is not very swift like to perform a nil check
-        // swiftlint:disable unused_optional_binding
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 

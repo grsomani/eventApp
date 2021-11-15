@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let req = EventSearch()
-        
+
         NetworkManager.instance.performOperation(request: req,
                                                  reponseType: SearchEventResponse.self) { response in
             print(response)
