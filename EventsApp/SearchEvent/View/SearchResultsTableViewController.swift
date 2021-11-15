@@ -28,6 +28,16 @@ class SearchResultsTableViewController: UITableViewController {
         setupSearchBar()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.searchController.searchBar.isHidden = false
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.searchController.searchBar.isHidden = true
+    }
+
     private func setupTableViewBackgroundView() {
         let backgroundViewLabel = UILabel(frame: .zero)
         backgroundViewLabel.textColor = .darkGray
@@ -40,6 +50,7 @@ class SearchResultsTableViewController: UITableViewController {
 
     private func setupSearchBar() {
         searchController.searchBar.delegate = self
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "Search any Event"
         tableView.tableHeaderView = searchController.searchBar
     }
@@ -58,7 +69,13 @@ class SearchResultsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // ToDO: Open Detail Page
+        self.searchController.searchBar.endEditing(true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let eventDetailVC = storyboard.instantiateViewController(withIdentifier: "EventDetailVC") as? EventDetailViewController else {
+            return
+        }
+        eventDetailVC.eventViewModel = searchResults[indexPath.row]
+        self.navigationController?.pushViewController(eventDetailVC, animated: true)
     }
 }
 
@@ -78,7 +95,6 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
     }
 
     func fetchResults(for text: String) {
-        debugPrint("Text Searched: \(text)")
         service.getSeachResults(for: text) { [weak self] data, error in
             if error != nil {
                 self?.searchResults.removeAll()

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +24,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j5K-9g-fq2">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j5K-9g-fq2">
                                             <rect key="frame" x="10" y="10" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="G8L-X6-vai"/>
@@ -82,6 +83,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xjv-Dj-1sD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1091.304347826087" y="5.3571428571428568"/>
+        </scene>
+        <!--Event Detail View Controller-->
+        <scene sceneID="C19-LF-J2S">
+            <objects>
+                <viewController storyboardIdentifier="EventDetailVC" id="hWx-t4-4Qs" customClass="EventDetailViewController" customModule="EventsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mmb-qp-8Gm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uid-oR-ZIa">
+                                <rect key="frame" x="10" y="54" width="394" height="358.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqg-MW-JNk" userLabel="Date">
+                                <rect key="frame" x="10" y="427.5" width="394" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOb-Ac-oTB" userLabel="Location">
+                                <rect key="frame" x="10" y="467" width="394" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FAH-kb-WjW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SOb-Ac-oTB" firstAttribute="top" secondItem="qqg-MW-JNk" secondAttribute="bottom" constant="18" id="0Ym-2M-7M0"/>
+                            <constraint firstItem="uid-oR-ZIa" firstAttribute="height" secondItem="Mmb-qp-8Gm" secondAttribute="height" multiplier="0.4" id="2VJ-FP-TNb"/>
+                            <constraint firstItem="uid-oR-ZIa" firstAttribute="leading" secondItem="FAH-kb-WjW" secondAttribute="leading" constant="10" id="3gv-fv-jYn"/>
+                            <constraint firstItem="FAH-kb-WjW" firstAttribute="trailing" secondItem="uid-oR-ZIa" secondAttribute="trailing" constant="10" id="5J2-d9-sAv"/>
+                            <constraint firstItem="uid-oR-ZIa" firstAttribute="top" secondItem="FAH-kb-WjW" secondAttribute="top" constant="10" id="PLA-pC-nNz"/>
+                            <constraint firstItem="qqg-MW-JNk" firstAttribute="trailing" secondItem="uid-oR-ZIa" secondAttribute="trailing" id="UoJ-pg-oU5"/>
+                            <constraint firstItem="qqg-MW-JNk" firstAttribute="leading" secondItem="uid-oR-ZIa" secondAttribute="leading" id="YHM-Nn-IQj"/>
+                            <constraint firstItem="qqg-MW-JNk" firstAttribute="top" secondItem="uid-oR-ZIa" secondAttribute="bottom" constant="15" id="cYO-xQ-49h"/>
+                            <constraint firstItem="SOb-Ac-oTB" firstAttribute="trailing" secondItem="uid-oR-ZIa" secondAttribute="trailing" id="e39-Dw-5Iv"/>
+                            <constraint firstItem="SOb-Ac-oTB" firstAttribute="leading" secondItem="uid-oR-ZIa" secondAttribute="leading" id="ede-Bg-jqF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dateLbl" destination="qqg-MW-JNk" id="vaG-ZL-JBX"/>
+                        <outlet property="eventImage" destination="uid-oR-ZIa" id="dcI-Io-jxh"/>
+                        <outlet property="locationLbl" destination="SOb-Ac-oTB" id="lrx-Qh-uOQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oeC-Jl-bI3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1829" y="5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fAw-qz-LA7">
