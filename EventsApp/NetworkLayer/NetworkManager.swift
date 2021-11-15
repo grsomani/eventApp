@@ -10,6 +10,7 @@ import Foundation
 public enum ConnectionError: Error {
     case invalidURL
     case noData
+    case parsingFailure
 }
 
 public struct NetworkManager {
@@ -37,9 +38,9 @@ public struct NetworkManager {
             return
         }
 
-        URLSession.shared.dataTask(with: urlRequest) { (data, _, error) in
-            if let error = error {
-                onError(error)
+        URLSession.shared.dataTask(with: urlRequest) { (data, _, taskError) in
+            if let taskError = taskError {
+                onError(taskError)
                 return
             }
 
@@ -48,11 +49,13 @@ public struct NetworkManager {
                 return
             }
             let decoder = JSONDecoder()
-            guard let parsedData = try? decoder.decode(reponseType.self, from: apiData) else {
-                onError(ConnectionError.noData)
-                return
+            do {
+                let parsedData = try decoder.decode(reponseType.self, from: apiData)
+                onSuccess(parsedData)
+            } catch {
+                debugPrint(error)
+                onError(ConnectionError.parsingFailure)
             }
-            onSuccess(parsedData)
         }.resume()
     }
 }
